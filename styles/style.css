@@ -1,0 +1,51 @@
+*{
+	box-sizing: border-box;
+	color: white;
+}
+
+body{
+	margin: 0;
+	background: black;
+}
+.condition{
+	/*margin-top: 500px;*/
+}
+#weatherContainer{
+
+}
+#navBar {
+	top: 0;
+	/*position: fixed;*/
+	display: flex;
+	width: 100vw;
+	background-color: #2c364b;
+	padding: 10px;
+	margin: 0;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+button {
+	margin: 2%;
+	max-width: 250px;
+    background-color: #2dabf9;
+    border-radius: 28px;
+    border: 1px solid #0b0e07;
+    flex: 2;
+    flex-grow: 1;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Helvetica;
+    font-size: 17px;
+    padding: 16px 31px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #263666;
+}
+button:hover {
+	background-color:#0688fa;
+}
+button:active {
+	position:relative;
+	top:1px;
+}

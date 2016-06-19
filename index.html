@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
-	<link rel=stylesheet type=text/css href=styles/style.css>
+    <title></title>
+    <link rel=stylesheet type=text/css href=styles/style.css>
 </head>
+
 <body>
-	<script type=text/javascript src=js/script.js></script>
+    <div id="navBar">
+        <button id="currentButton" value="currently">see current weather </button>
+        <button id="hourlyButton" value="hourly">see hourly forecast</button>
+        <button id="dailyButton" value="daily">see daily forecast</button>
+    </div>
+    <div id="weatherContainer">
+    	<p class="condition"> filler text</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script type=text/javascript src=js/script.js></script>
 </body>
+
 </html>
