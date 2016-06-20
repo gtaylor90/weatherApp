@@ -1,19 +1,17 @@
 var KEY = '3d9021af0fe004c37883c49e9cf08b46',
-    BASE_URL = 'https://api.forecast.io/forecast/'
+    BASE_URL = 'https://api.forecast.io/forecast/',
+    baseLat = 29.79836680912371,
+    baseLng = -95.38682656579275
 
-
-// 'https://api.forecast.io/forecast/3d9021af0fe004c37883c49e9cf08b46/LATITUDE,LONGITUDE'
-var locationReader = function(geoPos){
-	console.log('got geo pos')
-	location.hash = geoPos.coords.latitude + '/' + geoPos.coords.longitude + '/current'
-}
-
+var weatherPromise = $.getJSON(BASE_URL + KEY + '/' + baseLat + ',' + baseLng)
+    // 'https://api.forecast.io/forecast/3d9021af0fe004c37883c49e9cf08b46/LATITUDE,LONGITUDE'
 
 var currentStatus = ''
 
 var errorHandler = function(error) {
     console.log(error)
 }
+
 var buttonContainerNode = document.querySelector('#navBar')
 var buttonContainerNode_current = document.querySelector('#currentButton')
 var buttonContainerNode_daily = document.querySelector('#dailyButton')
@@ -23,14 +21,17 @@ var weatherContainerNode = document.querySelector('#weatherContainer')
 var weatherContainerNode_daily = document.querySelector('#weatherContainer_daily')
 var weatherContainerNode_current = document.querySelector('#weatherContainer_current')
 
-
+var locationReader = function(geoPos) {
+    console.log('got geo pos')
+    location.hash = geoPos.coords.latitude + '/' + geoPos.coords.longitude + '/' + currentStatus
+}
 
 var getInputHash = function(eventObj) {
     console.log('invoking getInputHash')
     var inputHash = eventObj.target.value
     console.log(inputHash)
     var currentStatus = inputHash
-    // console.log(currentStatus)
+        // console.log(currentStatus)
 }
 
 
@@ -39,31 +40,73 @@ var renderCurrentView = function(apiResponse) {
     console.log('invoking renderCurrentView')
     console.log(apiResponse)
     console.log("current status>>", currentStatus)
-    var summaryConditions = apiResponse.currently.summary
-    console.log(summaryConditions)
-    weatherContainerNode_current.innerHTML = '<p class="condition">' + summaryConditions + '</p>'
+    var currentCond = apiResponse.currently
+    console.log("current Conditions", currentCond.summary)
+    console.log("apparentTemperature>>", currentCond.apparentTemperature)
+    weatherContainerNode_current.innerHTML = ''
+    weatherContainerNode_current.innerHTML += '<div class="currentView">'
+    weatherContainerNode_current.innerHTML += '<div class="weatherInformation">'
+    weatherContainerNode_current.innerHTML += '<ul class="dailyInfo">'
+    weatherContainerNode_current.innerHTML += '<li class="temp"> Current Temperature: ' + currentCond.apparentTemperature + '</li>'
+    weatherContainerNode_current.innerHTML += '<li class="summary">' + currentCond.summary + '</li>'
+    weatherContainerNode_current.innerHTML += '<li class="day">' + currentCond.precipType + '</li>'
+    weatherContainerNode_current.innerHTML += '</ul>'
+    weatherContainerNode_current.innerHTML += '</div>'
+    weatherContainerNode_current.innerHTML += '</div>'
+
 }
 
-var renderDailyView = function(apiResponse) {
+
+
+
+/*var renderDailyView = function(apiResponse) {
     console.log('invoking renderDailyView')
-    console.log(apiResponse)
-    console.log("current status>>"+currentStatus)
-    var summaryConditions = apiResponse.daily.summary
-    console.log(summaryConditions)
-    weatherContainerNode_daily.innerHTML = '<p class="condition">' + summaryConditions + '</p>'
-}
+    console.log('apiResponse>>>>',apiResponse)
+    console.log("current status>>" + currentStatus)
+    var dailyConditions = apiResponse.daily
+    // console.log(summaryConditions)
+    for (var i = 0; i < dailyConditions.length; i++) {
+        var dayObj = dailyConditions[i]
+
+        weatherContainerNode_daily.innerHTML = '<div class="currentView">'
+        weatherContainerNode_daily.innerHTML = '<div class="weatherInformation">'
+        weatherContainerNode_daily.innerHTML = '<ul class="dailyInfo">'
+        weatherContainerNode_daily.innerHTML = '<li class="day">' + i + '</li>'
+        weatherContainerNode_daily.innerHTML = '<li class="temp"> High: ' + dayObj.apparentTemperatureMax + '</li>'
+        weatherContainerNode_daily.innerHTML = '<li class="temp"> Low: ' + dayObj.apparentTemperatureMin + '</li>'
+        weatherContainerNode_daily.innerHTML = '<li class="summary">' + dayObj.summary + '</li>'
+        weatherContainerNode_daily.innerHTML = '<li class="day">' +  + '</li>'
+        weatherContainerNode_daily.innerHTML = '</ul>'
+        weatherContainerNode_daily.innerHTML = '</div>'
+        weatherContainerNode_daily.innerHTML = '</div>'
+    }
+}*/
 
 var renderHourlyView = function(apiResponse) {
-    console.log('invoking renderHourlyView')
-    console.log(apiResponse)
-    console.log("current status>>"+currentStatus)
-    var summaryConditions = apiResponse.hourly.summary
-    console.log(summaryConditions)
-    weatherContainerNode.innerHTML = '<p class="condition">' + summaryConditions + '</p>'
-}
+        console.log('invoking renderHourlyView')
+        console.log(apiResponse)
+        console.log("current status>>" + currentStatus)
+        var summaryConditions = apiResponse.hourly.summary
+        console.log(summaryConditions)
+            // 
+
+    }
+    /*
+    <div class="currentView">
+        <div class="weatherInformation">
+            <ul class="dailyInfo">
+                <li class="day">Monday</li>
+                <li class="temp">99°</li>
+                <li class="condition">Partly Cloudy</li>
+                <li class="rainChance">77%</li>
+            </ul>
+        </div>
+    </div>
+    */
+
 
 var handleDefault = function() {
-	console.log('invoking handleDefault')
+    console.log('invoking handleDefault')
     var getPos = function(inputObj) {
         console.log(inputObj)
         var newLat = inputObj.coords.latitude
@@ -78,16 +121,17 @@ var handleDefault = function() {
 }
 
 var hashController = function() {
-	console.log('invoking hashController')
-    //test hash #29.79836680912371/-95.38682656579275/current
+    console.log('invoking hashController')
+        //test hash #29.79836680912371/-95.38682656579275/current
     var currentHash = location.hash.substr(1)
-    console.log("the current hash>>",currentHash)
+    console.log("the current hash>>", currentHash)
     if (!currentHash) {
+        console.log("first return statement")
         handleDefault()
         return
     } else {
 
-        console.log(currentHash)
+        console.log("else statment inside hashController")
             //test hash 29.79836680912371/-95.38682656579275/current
 
         var hashParts = currentHash.split('/')
@@ -98,7 +142,7 @@ var hashController = function() {
             currentView = hashParts[2]
         console.log(lat, lng, currentView)
 
-        var weatherPromise = $.getJSON(BASE_URL + KEY + '/' + lat + ',' + lng)
+        weatherPromise = $.getJSON(BASE_URL + KEY + '/' + lat + ',' + lng)
         console.log(weatherPromise)
 
         if (currentView === 'current') {
@@ -122,7 +166,7 @@ var getInputHash = function(eventObj) {
 }
 
 
-// navigator.geolocation.getCurrentPosition(locationReader, errorHandler)
+navigator.geolocation.getCurrentPosition(locationReader, errorHandler)
 /*
 var controller = function(){
 	var hashRoute = location.hash.substr[1]
@@ -135,7 +179,7 @@ var controller = function(){
 }
 */
 
-
+// buttonContainerNode_daily.addEventListener('click', renderDailyView)
 buttonContainerNode.addEventListener('click', getInputHash)
 window.addEventListener('hashchange', hashController)
 

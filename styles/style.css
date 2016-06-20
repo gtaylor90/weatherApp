@@ -1,41 +1,64 @@
-*{
-	box-sizing: border-box;
-	color: white;
+* {
+    box-sizing: border-box;
+    color: white;
+	font-family: 'Poiret One', cursive;
 }
 
-body{
-	margin: 0;
-	background: black;
+
+body {
+    margin: 0;
+    background: black;
+    background-image: url('http://www.australia.com/content/australia/en_us/facts/weather/_jcr_content/mainParsys/hero/image.adapt.1663.medium.jpg');
 }
 
-.currentView{
-	background-image: url('http://www.gannett-cdn.com/-mm-/3526533239800dac0c978150377d099025f1e52c/c=52-700-4303-3102&r=x1683&c=3200x1680/local/-/media/USATODAY/None/2014/10/03/1412368123000-Mesostorm-Lightning.jpg');
+h2 {
+	font-size: 25pt;
+}
+.weatherInformation {
+	flex: 1;
+	margin: 20px;
+	padding-left: 3%;
+	padding-right: 2%;
+	padding-top: 1%;
+	padding-bottom: 0;
+	width: 50000px;
+    background-color: rgba(44, 54, 75, .5);
+    flex-basis: auto;
+    list-style: square;
 }
 
-.condition{
-
+.currentView {
+	display: flex;
+    padding: 2% 2% 2% 2%;
+    /*margin-top: 25%;*/
+    overflow-y: scroll;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#weatherContainer_daily{
+.condition {}
 
+#weatherContainer_daily {
+	margin-top: 20%;
 }
 
 #navBar {
-	top: 0;
-	/*position: fixed;*/
-	display: flex;
-	width: 100vw;
-	background-color: #2c364b;
-	padding: 10px;
-	margin: 0;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: space-between;
+    top: 0;
+    /*position: fixed;*/
+    /*opacity: .5;*/
+    display: flex;
+    width: 100vw;
+    background-color: rgba(44, 54, 75, .5);
+    padding: 10px;
+    margin: 0;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 button {
-	margin: 2%;
-	max-width: 250px;
+    margin: 2%;
+    max-width: 250px;
     background-color: #2dabf9;
     border-radius: 28px;
     border: 1px solid #0b0e07;
@@ -49,10 +72,12 @@ button {
     text-decoration: none;
     text-shadow: 0px 1px 0px #263666;
 }
+
 button:hover {
-	background-color:#0688fa;
+    background-color: #0688fa;
 }
+
 button:active {
-	position:relative;
-	top:1px;
+    position: relative;
+    top: 1px;
 }
