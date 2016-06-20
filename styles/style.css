@@ -50,7 +50,7 @@ li {
 
 #navBar {
     top: 0;
-    /*position: fixed;*/
+    position: fixed;
     /*opacity: .5;*/
     display: flex;
     width: 100vw;
