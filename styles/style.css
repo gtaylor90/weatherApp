@@ -1,9 +1,8 @@
 * {
     box-sizing: border-box;
     color: white;
-	font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', cursive;
 }
-
 
 body {
     margin: 0;
@@ -12,23 +11,30 @@ body {
 }
 
 h2 {
-	font-size: 25pt;
+    font-size: 35pt;
 }
+
+li {
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+
 .weatherInformation {
-	flex: 1;
-	margin: 20px;
-	padding-left: 3%;
-	padding-right: 2%;
-	padding-top: 1%;
-	padding-bottom: 0;
-	width: 50000px;
+    flex: 1;
+    margin: 20px;
+    padding-left: 3%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 0;
+    width: 50000px;
     background-color: rgba(44, 54, 75, .5);
     flex-basis: auto;
     list-style: square;
 }
 
 .currentView {
-	display: flex;
+    display: flex;
     padding: 2% 2% 2% 2%;
     /*margin-top: 25%;*/
     overflow-y: scroll;
@@ -39,7 +45,7 @@ h2 {
 .condition {}
 
 #weatherContainer_daily {
-	margin-top: 20%;
+    margin-top: 10%;
 }
 
 #navBar {
@@ -80,4 +86,25 @@ button:hover {
 button:active {
     position: relative;
     top: 1px;
+}
+
+
+/*skycons stuff*/
+
+article {
+    margin: auto;
+    width: 30em;
+}
+
+figure {
+    margin: 3em auto;
+    width: 368px;
+    height: 152px;
+}
+
+canvas {
+    display: block;
+    float: left;
+    margin-left: 8px;
+    margin-top: 8px;
 }

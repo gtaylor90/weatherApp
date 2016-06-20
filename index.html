@@ -19,6 +19,10 @@
             <div class="currentView">
                 <div class="weatherInformation">
                     <h2 class="day">Monday</h2>
+                    <figure class="icons">
+                        <canvas id="partly-cloudy-day" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -27,6 +31,10 @@
                 </div>
                 <div class="weatherInformation">
                     <h2 class="day">Tuesday</h2>
+                    <figure class="icons">
+                        <canvas id="snow" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -35,6 +43,10 @@
                 </div>
                 <div class="weatherInformation">
                     <h2 class="day">Wednesday</h2>
+                    <figure class="icons">
+                        <canvas id="clear-night" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -43,6 +55,10 @@
                 </div>
                 <div class="weatherInformation">
                     <h2 class="day">Thursday</h2>
+                    <figure class="icons">
+                        <canvas id="partly-cloudy-night" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -51,6 +67,10 @@
                 </div>
                 <div class="weatherInformation">
                     <h2 class="day">Friday</h2>
+                    <figure class="icons">
+                        <canvas id="sleet" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -59,6 +79,10 @@
                 </div>
                 <div class="weatherInformation">
                     <h2 class="day">Saturday</h2>
+                    <figure class="icons">
+                        <canvas id="fog" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -67,6 +91,10 @@
                 </div>
                 <div class="weatherInformation">
                     <h2 class="day">Sunday</h2>
+                    <figure class="icons">
+                        <canvas id="clear-day" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -75,6 +103,10 @@
                 </div>
                 <div class="weatherInformation">
                     <h2 class="day">Monday</h2>
+                    <figure class="icons">
+                        <canvas id="rain" width="120" height="120">
+                        </canvas>
+                    </figure>
                     <ul class="dailyInfo">
                         <li class="temp">99F</li>
                         <li class="condition">Partly Cloudy</li>
@@ -87,6 +119,21 @@
     </div>
     <!-- <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script> -->
     <!-- <script type=text/javascript src=js/script.js></script> -->
+    <script src="js/skycons.js"></script>
+    <script>
+    var icons = new Skycons(),
+        list = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+        ],
+        i;
+
+    for (i = list.length; i--;)
+        icons.set(list[i], list[i]);
+
+    icons.play();
+    </script>
 </body>
 
 </html>
