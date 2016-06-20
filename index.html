@@ -13,7 +13,20 @@
         <button id="dailyButton" value="daily">see daily forecast</button>
     </div>
     <div id="weatherContainer">
-    	<p class="condition"> filler text</p>
+    	<div id="weatherContainer_current"></div>
+        <div id="weatherContainer_daily">
+            <div class="currentView">
+                <div class="weatherInformation">
+                    <ul class="dailyInfo">
+                        <li class="day">Monday</li>
+                        <li class="temp">99°</li>
+                        <li class="condition">Partly Cloudy</li>
+                        <li class="rainChance">77%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- <p class="condition"> filler text</p> -->
     </div>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script type=text/javascript src=js/script.js></script>
