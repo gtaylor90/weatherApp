@@ -161,19 +161,21 @@ var WeatherRouter = Backbone.Router.extend({
     },
 
     showCurrentWeather: function() {
-        location.hash = "home"
+        // first we need to promise
+        // then we need to render it
+        
     },
 
     showDailyWeather: function() {
-        renderHomeView()
+
     },
 
     showHourlyWeather: function() {
 
     },
 
-    geolocate: function(stateCode) {
-
+    geolocate: function() {
+        // pull information, store in the hash
     }
 })
 
