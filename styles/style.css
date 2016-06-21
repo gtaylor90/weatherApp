@@ -38,7 +38,6 @@ li {
     padding-right: 2%;
     padding-top: 1%;
     padding-bottom: 0;
-    width: 50000px;
     background-color: rgba(44, 54, 75, .5);
     flex-basis: auto;
     list-style: square;
@@ -60,7 +59,6 @@ li {
     height: 500px;
     display: flex;
     flex-direction: row;
-    overflow: scroll;
 }
 
 #navBar {

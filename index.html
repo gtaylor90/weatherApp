@@ -3,12 +3,12 @@
 
 <head>
     <title></title>
-    <link rel=stylesheet type=text/css href=styles/style.css>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 </head>
 
 <body>
-    <img id="backgroundImage" src="http://www.australia.com/content/australia/en_us/facts/weather/_jcr_content/mainParsys/hero/image.adapt.1663.medium.jpg">
+    <img id="backgroundImage" src="http://www.australia.com/content/australia/en_us/facts/weather/_jcr_content/mainParsys/hero/image.adapt.1663.medium.jpg" alt="some image">
     <div id="navBar">
         <button id="currentButton" value="currently">see current weather </button>
         <button id="hourlyButton" value="hourly">see hourly forecast</button>
@@ -17,11 +17,13 @@
     <div id="weatherContainer">
         <!-- <p class="condition"> filler text</p> -->
     </div>
+
     <script src="js/skycons.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script type=text/javascript src=js/script.js></script>
+    <script type="text/javascript" src="js/script.js"></script>
     <script>
-    var icons = new Skycons(),
+        var icons = new Skycons(),
         list = [
             "clear-day", "clear-night", "partly-cloudy-day",
             "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
@@ -29,10 +31,10 @@
         ],
         i;
 
-    for (i = list.length; i--;)
+        for (i = list.length; i--;)
         icons.set(list[i], list[i]);
 
-    icons.play();
+        icons.play();
     </script>
 </body>
 
