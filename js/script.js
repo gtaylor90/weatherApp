@@ -152,6 +152,31 @@ var hashController = function() {
     }
 };
 
+var WeatherRouter = Backbone.Router.extend({
+    routes: {
+        ":lat/:lng/currently": "showCurrentWeather",
+        ":lat/:lng/daily": "showDailyWeather",
+        ":lat/:lng/hourly": "showHourlyWeather",
+        "*anything": "geolocate"
+    },
+
+    showCurrentWeather: function() {
+        location.hash = "home"
+    },
+
+    showDailyWeather: function() {
+        renderHomeView()
+    },
+
+    showHourlyWeather: function() {
+
+    },
+
+    geolocate: function(stateCode) {
+
+    }
+})
+
 var getInputHash = function(eventObj) {
 
     var viewType = eventObj.target.value;
@@ -165,6 +190,7 @@ var getInputHash = function(eventObj) {
     location.hash = hashArray.join('/');
 
 };
+
 
 /*
 var controller = function(){
