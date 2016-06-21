@@ -8,118 +8,18 @@
 </head>
 
 <body>
+    <img id="backgroundImage" src="http://www.australia.com/content/australia/en_us/facts/weather/_jcr_content/mainParsys/hero/image.adapt.1663.medium.jpg">
     <div id="navBar">
         <button id="currentButton" value="currently">see current weather </button>
         <button id="hourlyButton" value="hourly">see hourly forecast</button>
         <button id="dailyButton" value="daily">see daily forecast</button>
     </div>
     <div id="weatherContainer">
-        <div id="weatherContainer_current"></div>
-        <div id="weatherContainer_daily">
-            <div class="currentView">
-                <div class="weatherInformation">
-                    <h2 class="day">Monday</h2>
-                    <figure class="icons">
-                        <canvas id="partly-cloudy-day" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-                <div class="weatherInformation">
-                    <h2 class="day">Tuesday</h2>
-                    <figure class="icons">
-                        <canvas id="snow" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-                <div class="weatherInformation">
-                    <h2 class="day">Wednesday</h2>
-                    <figure class="icons">
-                        <canvas id="clear-night" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-                <div class="weatherInformation">
-                    <h2 class="day">Thursday</h2>
-                    <figure class="icons">
-                        <canvas id="partly-cloudy-night" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-                <div class="weatherInformation">
-                    <h2 class="day">Friday</h2>
-                    <figure class="icons">
-                        <canvas id="sleet" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-                <div class="weatherInformation">
-                    <h2 class="day">Saturday</h2>
-                    <figure class="icons">
-                        <canvas id="fog" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-                <div class="weatherInformation">
-                    <h2 class="day">Sunday</h2>
-                    <figure class="icons">
-                        <canvas id="clear-day" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-                <div class="weatherInformation">
-                    <h2 class="day">Monday</h2>
-                    <figure class="icons">
-                        <canvas id="rain" width="120" height="120">
-                        </canvas>
-                    </figure>
-                    <ul class="dailyInfo">
-                        <li class="temp">99F</li>
-                        <li class="condition">Partly Cloudy</li>
-                        <li class="rainChance">77%</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <!-- <p class="condition"> filler text</p> -->
     </div>
-    <!-- <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script> -->
-    <!-- <script type=text/javascript src=js/script.js></script> -->
     <script src="js/skycons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script type=text/javascript src=js/script.js></script>
     <script>
     var icons = new Skycons(),
         list = [
