@@ -170,10 +170,10 @@ var WeatherRouter = Backbone.Router.extend({
         var getPos = function(inputObj) {
 
             var newLat = inputObj.coords.latitude;
-            var newLon = inputObj.coords.longitude;
+            var newLng = inputObj.coords.longitude;
 
             var newView = 'currently';
-            var hash = newLat + '/' + newLon + '/' + newView;
+            var hash = newLat + '/' + newLng + '/' + newView;
 
             location.hash = hash;
         };
@@ -181,21 +181,21 @@ var WeatherRouter = Backbone.Router.extend({
 
     },
 
-    showCurrentWeather: function() {
+    showCurrentWeather: function(lat, lng) {
         // first we need to promise
         // then we need to render it
-        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
+        var promise = $.getJSON(BASE_URL + KEY + '/' + lat + ',' + lng)
         promise.then(renderCurrentView)
 
     },
 
-    showDailyWeather: function() {
-        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
+    showDailyWeather: function(lat, lng) {
+        var promise = $.getJSON(BASE_URL + KEY + '/' + lat + ',' + lng)
         promise.then(renderDailyView)
     },
 
-    showHourlyWeather: function() {
-        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
+    showHourlyWeather: function(lat, lng) {
+        var promise = $.getJSON(BASE_URL + KEY + '/' + lat + ',' + lng)
         promise.then(renderHourlyView)
 
     }
