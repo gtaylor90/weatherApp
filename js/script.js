@@ -2,7 +2,13 @@ var KEY = '3d9021af0fe004c37883c49e9cf08b46',
     BASE_URL = 'https://api.forecast.io/forecast/';
 
 
-
+var genParamString = function(paramObject) {
+    var outputString = '?'
+    for (var key in paramObject) {
+        outputString += key + '=' + paramObject[key] + '&'
+    }
+    return outputString.substr(0, outputString.length - 1)
+}
 
 var buttonContainerNode = document.querySelector('#navBar');
 var buttonContainerNode_current = document.querySelector('#currentButton');
@@ -26,7 +32,7 @@ var renderCurrentView = function(apiResponse) {
     console.log(apiResponse);
     var currentCond = apiResponse.currently;
     var iconString = currentCond.icon
-    // console.log('icon', apiResponse.curently.icon);
+        // console.log('icon', apiResponse.curently.icon);
     var htmlString = '';
     htmlString += '<div class="currentView">';
     htmlString += '<div class="weatherInformation">';
@@ -142,7 +148,7 @@ var hashController = function() {
 
 
         weatherPromise = $.getJSON(BASE_URL + KEY + '/' + lat + ',' + lng);
-        if (currentView === 'currently') {
+        if (currentView === 'current') {
             weatherPromise.then(renderCurrentView);
         } else if (currentView === 'daily') {
             weatherPromise.then(renderDailyView);
@@ -154,29 +160,62 @@ var hashController = function() {
 
 var WeatherRouter = Backbone.Router.extend({
     routes: {
+        "*anything": "geolocate",
         ":lat/:lng/currently": "showCurrentWeather",
         ":lat/:lng/daily": "showDailyWeather",
-        ":lat/:lng/hourly": "showHourlyWeather",
-        "*anything": "geolocate"
+        ":lat/:lng/hourly": "showHourlyWeather"
+    },
+
+    geolocate: function() {
+        var getPos = function(inputObj) {
+
+            var newLat = inputObj.coords.latitude;
+            var newLon = inputObj.coords.longitude;
+
+            var newView = 'currently';
+            var hash = newLat + '/' + newLon + '/' + newView;
+
+            location.hash = hash;
+        };
+        navigator.geolocation.getCurrentPosition(getPos);
+
     },
 
     showCurrentWeather: function() {
         // first we need to promise
         // then we need to render it
-        
+        var currentHash = location.hash.substr(1);
+        console.log('current Hash>>', currentHash)
+        var hashParts = currentHash.split('/');
+        var lat = hashParts[0],
+            lng = hashParts[1],
+            currentView = hashParts[2];
+        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
+        promise.then(renderCurrentView)
+
     },
 
     showDailyWeather: function() {
-
+        var currentHash = location.hash.substr(1);
+        var hashParts = currentHash.split('/');
+        var lat = hashParts[0],
+            lng = hashParts[1],
+            currentView = hashParts[2];
+        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
+        promise.then(renderDailyView)
     },
 
     showHourlyWeather: function() {
+        var currentHash = location.hash.substr(1);
+        var hashParts = currentHash.split('/');
+        var lat = hashParts[0],
+            lng = hashParts[1],
+            currentView = hashParts[2];
+        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat +  ',' + lng)
+        promise.then(renderHourlyView)
 
-    },
-
-    geolocate: function() {
-        // pull information, store in the hash
     }
+
 })
 
 var getInputHash = function(eventObj) {
@@ -206,8 +245,15 @@ var controller = function(){
 }
 */
 
+// create a new instance of the router
+var rtr = new WeatherRouter()
+
+// tell backbone to start watching the hash and tracking browser history
+Backbone.history.start()
+
+
 // buttonContainerNode_daily.addEventListener('click', renderDailyView)
 buttonContainerNode.addEventListener('click', getInputHash);
-window.addEventListener('hashchange', hashController);
+// window.addEventListener('hashchange', hashController);
 
-hashController();
+// hashController();
