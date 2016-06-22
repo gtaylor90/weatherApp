@@ -129,7 +129,7 @@ var handleDefault = function() {
     };
     navigator.geolocation.getCurrentPosition(getPos);
 };
-
+/*
 var hashController = function() {
     //test hash #29.79836680912371/-95.38682656579275/current
     var currentHash = location.hash.substr(1);
@@ -157,7 +157,7 @@ var hashController = function() {
         }
     }
 };
-
+*/
 var WeatherRouter = Backbone.Router.extend({
     routes: {
         ":lat/:lng/currently": "showCurrentWeather",
