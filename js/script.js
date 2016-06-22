@@ -160,10 +160,10 @@ var hashController = function() {
 
 var WeatherRouter = Backbone.Router.extend({
     routes: {
-        "*anything": "geolocate",
         ":lat/:lng/currently": "showCurrentWeather",
         ":lat/:lng/daily": "showDailyWeather",
-        ":lat/:lng/hourly": "showHourlyWeather"
+        ":lat/:lng/hourly": "showHourlyWeather",
+        "*anything": "geolocate"
     },
 
     geolocate: function() {
@@ -184,34 +184,18 @@ var WeatherRouter = Backbone.Router.extend({
     showCurrentWeather: function() {
         // first we need to promise
         // then we need to render it
-        var currentHash = location.hash.substr(1);
-        console.log('current Hash>>', currentHash)
-        var hashParts = currentHash.split('/');
-        var lat = hashParts[0],
-            lng = hashParts[1],
-            currentView = hashParts[2];
         var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
         promise.then(renderCurrentView)
 
     },
 
     showDailyWeather: function() {
-        var currentHash = location.hash.substr(1);
-        var hashParts = currentHash.split('/');
-        var lat = hashParts[0],
-            lng = hashParts[1],
-            currentView = hashParts[2];
         var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
         promise.then(renderDailyView)
     },
 
     showHourlyWeather: function() {
-        var currentHash = location.hash.substr(1);
-        var hashParts = currentHash.split('/');
-        var lat = hashParts[0],
-            lng = hashParts[1],
-            currentView = hashParts[2];
-        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat +  ',' + lng)
+        var promise = $.getJSON(BASE_URL + '/' + KEY + '/' + lat + ',' + lng)
         promise.then(renderHourlyView)
 
     }
